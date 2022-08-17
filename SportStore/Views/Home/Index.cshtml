@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Product>
+
+
+<hЗ class="p-2 bg-primary text-white text-center">Products</hЗ>
+
+<div class="container-fluid mt-3">
+
+    <div class="row">
+
+        <div class="col font-weight-Ьold">Id</div>
+        <div class="col font-weight-bold">Name</div>
+        <div class="col font-weight-bold">Category</div>
+        <div class="col font-weight-bold text-right">Purchase Price</div>
+        <div class="col font-weight-bold text-right">Retail Price</div>
+        <div class="col"></div>
+    </div>
+
+
+@if(Model.Count() != 0){
+ 
+        @foreach (Product p in Model)
+        {
+            <div class="row р-2">
+
+                <div class="col">@p.Id</div>
+                <div class="col">@p.Name</div>
+                <div class="col">@p.Category</div>
+                <div class="col text-right">@p.PurchasePrice</div>
+                <div class="col text-right">@p.RetailPrice</div>
+
+
+
+                <form asp-action="Delete"  method="post">
+
+
+                    
+                    <div class="col">
+                        <a asp-action="UpdateProduct" asp-route-key="@p.Id" class="btn btn-outline-primary">Edit</a>
+                    </div>
+
+
+
+                    <input type="hidden" name="Id" value="@p.Id" />
+                
+
+                    <button type="submit" class="btn Ьtn-outline-danger">Delete</button>
+
+
+                    <!--
+
+                    Обратите внимание, что форма содержит единственный элемент input для свойства Id. 
+                    Это все, что инфраструктура Entity Framework Core применяет для удаления
+                    объекта из БД, хотя операция выполняется над полным объектом Product. Вместо
+                    отправки дополнительных данных, которые не планируется использовать, 
+                    было послано только значение первичного ключа, 
+                    которое связыватель моделей MVC применит для создания объекта Product, 
+                    оставляя все другие свойства равными nul 1 или
+                    стандартному значению для типа.
+
+
+
+                    Отправка для операции удаления одного лишь значения I d рациональна и проста, но полагается на знание того, как
+                    работает инфраструктура Eпtity Framework Core, и создает зависимость от способа хранения данных. В качестве альтернативы можно не опираться на поведение Eпtity Framework
+                    Core, но тогда придется отправлять значения для свойст  которые будут проигнорированы, и тем самым увеличить ширину полосы пропускания, требующуюся приложению. Одни
+                    проектные решения являются ясно очерченными, тогда как другие требуют сложного выбора из субоптимальных вариантов.
+
+                     -->
+
+
+                </form>
+
+            </div>
+        }
+
+        }
+else{
+
+        <div class="row р-2">
+               <h1> No Data</h1>
+        </div>
+
+}
+
+    <a asp-action="UpdateProduct" asp-route-key="0" class="btn btn-success">Создать продукт</a>
+
+</div>
