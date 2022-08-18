@@ -10,49 +10,25 @@ namespace SportStore.Controllers
     {
 
         private IRepository repository;
+        private ICategoryRepository categoryRepository;
 
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        /// <param name="repository"></param>
-        public HomeController(IRepository repo) => repository = repo;
+        public HomeController(IRepository repo, ICategoryRepository catrepo) {
 
+            repository = repo;
+            categoryRepository = catrepo;
+        }
 
-
-
-
-
-        /// <summary>
-        /// Index
-        /// </summary>
-        /// <returns></returns>
         public IActionResult Index() {
             System.Console.Clear();
             return View(repository.Products.ToArray());
         }
 
 
-
-
-
-        /// <summary>
-        /// Форма добавления продуктаы
-        /// </summary>
-        /// <returns></returns>
         public ActionResult AddProduct()
         {
             return View("Create");
         }
 
-
-
-
-
-        /// <summary>
-        /// Добавление продвкта
-        /// </summary>
-        /// <param name="product"></param>
-        /// <returns></returns>
         [HttpPost]
         public ActionResult AddProduct(Product product)
         {
@@ -68,21 +44,13 @@ namespace SportStore.Controllers
         }
 
 
-        /// <summary>
-        /// Форма редактирования
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
         public IActionResult UpdateProduct(long key)
         {
+            ViewBag.Categories = categoryRepository.Categories;
             return View(key == 0 ? new Product() : repository.GetProduct(key));
         }
 
-        /// <summary>
-        /// Редактирование
-        /// </summary>
-        /// <param name="product"></param>
-        /// <returns></returns>
+                
         [HttpPost]
         public IActionResult UpdateProduct(Product product)
         {

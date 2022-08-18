@@ -1,4 +1,5 @@
-﻿using SportStore.Interface;
+﻿using Microsoft.EntityFrameworkCore;
+using SportStore.Interface;
 
 namespace SportStore.Models
 
@@ -8,13 +9,10 @@ namespace SportStore.Models
 
         private DataContext context;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="ctx"></param>
+
         public DataRepository(DataContext ctx) => context = ctx;
 
-        public IEnumerable<Product> Products => context.Products;
+        public IEnumerable<Product> Products => context.Products.Include(p => p.Category).ToArray();
 
 
         public void AddProduct(Product product)
@@ -25,7 +23,7 @@ namespace SportStore.Models
         }
 
 
-        public Product GetProduct(long key) => context.Products.Find(key);
+        public Product GetProduct(long key) => context.Products.Include(p => p.Category).First(p => p.Id == key);
 
 
         public void UpdateProduct(Product product)

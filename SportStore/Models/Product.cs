@@ -23,9 +23,9 @@ namespace SportStore.Models
 
 
 
-        [Required(ErrorMessage = "Пожайлуста введите категорию")]
+        
         public long CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
             
     }
