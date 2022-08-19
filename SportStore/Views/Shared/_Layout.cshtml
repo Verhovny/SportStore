@@ -1,48 +1,70 @@
 ﻿<!DOCTYPE html>
 <html>
+
     <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>SportsStore</title>
+        <meta name="viewport" content="width=decvice-width"/>
+        <title>SportStore</title>
 
         <link rel="stylesheet" href="~/dist/index.css" />
 
-        
+       <style>
+           .placeholder{visibility: collapse; display: none}
+           .placeholder:only-child {visibility: visible; display: flex}
+       </style>
+
+
+        @await RenderSectionAsync("Scripts", required: false)
+        @await RenderSectionAsync("ValidationScript", required: false)
+
+
+
 
     </head>
+
     <body>
+        <div class="container-fluid">
+
+            <div class="row p-2">
+
+                <div class="col-2">
+
+               
+                    <a asp-controller="Home" asp-action="Index" class="@GetClassForButton("Home")">
+                        Products
+                    </a>
+             
+
+           
+                    <a asp-controller="Category" asp-action="Index" class="@GetClassForButton("Category")">
+                        Category
+                    </a>
+              
+
+              
+                    <a asp-controller="Order" asp-action="Index" class="@GetClassForButton("Order")">
+                        Order
+                    </a>
+          
+                
+             </div>
+
+                <div class="col">
+                    @RenderBody()
+                </div>
 
 
-    <div class="container-fluid">
-        <div class="row p-2">
-
-
-            <div class="col-2">
-                <a asp-controller="Home" asp-action="Index" class="@GetClassForButton("Home")">
-                    Products
-                </a>
-                <a asp-controller="Category" asp-action="Index" class="@GetClassForButton("Category")">
-                    Categories
-                </a>
             </div>
-
-
-
-            <div class="col">
-                @RenderBody()
-            </div>
-
 
         </div>
-    </div>
 
-    @await RenderSectionAsync("Scripts", required: false)
-    @await RenderSectionAsync("ValidationScript", required: false)
     </body>
-</html> 
 
+</html>
 
-@functions {
-    string GetClassForButton(string controller) {
-        return "btn btn-block " + (ViewContext.RouteData.Values["controller"] as string == controller ? "btn-primary": "btn-outline-primary");
+@functions{
+    string GetClassForButton(string controller){
+        return "btn btn-block " + (ViewContext.RouteData.Values["controller"] as string == controller ? "btn-primary" : "btn-outline-primary");
     }
 }
+
+

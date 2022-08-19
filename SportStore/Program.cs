@@ -51,7 +51,7 @@ builder.Services.AddSession();
 
 builder.Services.AddTransient<IRepository,DataRepository>(); // одие раз создаетс€ одиночный объект дл€ всего приложени€ы
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
-
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 
 var app = builder.Build();
 
@@ -82,11 +82,6 @@ app.MapControllerRoute(
 
 // тоже самое
 //app.MapDefaultControllerRoute();
-
-
-
-
-
 
 
 app.Run();
