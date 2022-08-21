@@ -5,7 +5,18 @@
         <meta name="viewport" content="width=decvice-width"/>
         <title>SportStore</title>
 
-        <link rel="stylesheet" href="~/dist/index.css" />
+       
+
+        @{
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production"){
+            <link rel="stylesheet" href="wwwroot/dist/index.css" />
+            }
+            else{
+            <link rel="stylesheet" href="~/dist/index.css" />
+            }
+        }
+
+
 
        <style>
            .placeholder{visibility: collapse; display: none}
