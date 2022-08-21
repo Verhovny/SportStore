@@ -3,6 +3,8 @@ using SportStore.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,8 +30,12 @@ builder.Services.AddMvc();
 //builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 
 // Подключение базы данных SQL Server
-string connection = builder.Configuration.GetConnectionString("MSSQL");
-builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
+string connection = builder.Configuration.GetConnectionString("PostgreSQL");
+//builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
+builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(connection));
+//builder.Services.AddDbContext<DataContext>(options => options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 30))));
+//builder.Services.AddDbContext<DataContext>(options => options.UseSqlite(connection));
+
 
 
 // Это значит совместное использоване объекта класса AppTimeService во всем приложении.
