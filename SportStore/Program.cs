@@ -47,7 +47,7 @@ builder.Services.AddDbContext<DataContext>(options =>
     else // In Development Environment
     {
        
-        options.UseNpgsql(builder.Configuration.GetValue<string>("CONNECTION_STRING"));
+        options.UseNpgsql(connection);
     }
 
 }

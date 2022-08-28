@@ -7,54 +7,14 @@
 
      
         @{
-            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production"){
-
-            <base href="/" />
-
-                
-            <link rel="stylesheet" href="~/src/css/index.css" type="text/css" />
-            <link rel="stylesheet" href="~/SportStore/src/css/index.css" type="text/css" />
-
-
-            <link rel="stylesheet" href="~/wwwwroot/dist/index.css" type="text/css" />
-            <link rel="stylesheet" href="./wwwwroot/dist/index.css" type="text/css" />
-            <link rel="stylesheet" href="wwwwroot/dist/index.css" type="text/css" />
-            <link rel="stylesheet" href="/wwwwroot/dist/index.css" type="text/css" />
-
-
-
-            <link rel="stylesheet" href="~/src/css/index.css" type="text/css" />
-            <link rel="stylesheet" href="~/SportStore/src/css/index.css" type="text/css" />
-
-
-            <link rel="stylesheet" href="~/../src/css/index.css" type="text/css" />
-            <link rel="stylesheet" href="~/../SportStore/src/css/index.css" type="text/css" />
-
-
-            <link rel="stylesheet" href="~/static/css/index.css" type="text/css" />
-
-            <link rel="stylesheet" href="./static/css/index.css" type="text/css" />
-
-             <link rel="stylesheet" href="/assets/SportStore/src/css/index.css" type="text/css" />
-              <link rel="stylesheet" href="/assets//src/css/index.css" type="text/css" />
-
-              <link rel="stylesheet" href="./assets/SportStore/src/css/index.css" type="text/css" />
-              <link rel="stylesheet" href="./assets//src/css/index.css" type="text/css" />
-
-            <link rel="stylesheet" href="assets/SportStore/src/css/index.css" type="text/css" />
-            <link rel="stylesheet" href="assets/src/css/index.css" type="text/css" />
-
-
-
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+            {
+                <link rel="stylesheet" href="~/src/css/index.css" type="text/css" />
             }
-            else{
-            <link rel="stylesheet" href="~/dist/index.css" />
-
-
+            else
+            {
+                <link rel="stylesheet" href="~/dist/index.css" />
             }
-
-
-
         }
 
 
